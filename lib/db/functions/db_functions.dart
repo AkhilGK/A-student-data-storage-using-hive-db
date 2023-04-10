@@ -2,7 +2,6 @@
 
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter/material.dart';
-
 import '../models/data_modal.dart';
 
 ValueNotifier<List<StudentModel>> studentListNotifier = ValueNotifier([]);

@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import '../db/functions/db_functions.dart';
 import 'display_student_screen.dart';
 import 'edit_student.dart';
