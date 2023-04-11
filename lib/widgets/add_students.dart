@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:student_model/constants/constants.dart';
 import 'package:student_model/db/functions/db_functions.dart';
 
 import '../db/models/data_modal.dart';
@@ -25,7 +26,10 @@ class _AddStudentClassState extends State<AddStudentClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Student details'),
+        title: const Text(
+          'Add Student details',
+          style: ktextStyle,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -80,9 +84,7 @@ class _AddStudentClassState extends State<AddStudentClass> {
                     }
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                kHeight20,
                 TextFormField(
                   maxLength: 2,
                   controller: _ageOfStudent,
@@ -118,9 +120,7 @@ class _AddStudentClassState extends State<AddStudentClass> {
                     }
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                kHeight20,
                 TextFormField(
                   maxLength: 10,
                   controller: _phnOfStudent,

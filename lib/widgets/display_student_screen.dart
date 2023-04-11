@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:student_model/constants/constants.dart';
 
 import 'edit_student.dart';
 
@@ -51,42 +51,14 @@ class DisplayStudent extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Name: $name',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Age: $age',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Address: $address',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Phone Number: $number',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
+                kHeight10,
+                detailsFields(title: 'Name', data: name),
+                kHeight10,
+                detailsFields(title: 'Age', data: age),
+                kHeight10,
+                detailsFields(title: 'Address', data: address),
+                kHeight10,
+                detailsFields(title: 'Phone No', data: number),
                 ElevatedButton.icon(
                     onPressed: (() {
                       Navigator.of(context)
@@ -107,6 +79,15 @@ class DisplayStudent extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Text detailsFields({required String title, required String data}) {
+    return Text(
+      '$title : $data',
+      style: const TextStyle(
+        fontSize: 20,
       ),
     );
   }

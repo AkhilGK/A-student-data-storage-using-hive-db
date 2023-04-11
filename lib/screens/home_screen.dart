@@ -1,5 +1,6 @@
 //
 import 'package:flutter/material.dart';
+import 'package:student_model/constants/constants.dart';
 import 'package:student_model/db/functions/db_functions.dart';
 import 'package:student_model/widgets/add_students.dart';
 
@@ -19,7 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
     getallstudents();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Log'),
+        title: const Text(
+          'Student Log',
+          style: ktextStyle,
+        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.search),
