@@ -3,8 +3,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:student_model/constants/constants.dart';
 import 'package:student_model/db/functions/db_functions.dart';
+import 'package:student_model/provider/studentProvider.dart';
 
 import '../db/models/data_modal.dart';
 
@@ -207,7 +209,7 @@ class _AddStudentClassState extends State<AddStudentClass> {
       address: address,
       photo: _photo!.path,
     );
-    addStudent(student);
+    Provider.of<studentProvider>(context, listen: false).addStudent(student);
   }
 
   File? _photo;

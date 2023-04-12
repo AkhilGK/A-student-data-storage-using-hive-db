@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:student_model/db/models/data_modal.dart';
+import 'package:student_model/provider/studentProvider.dart';
 
 import '../db/functions/db_functions.dart';
 import 'display_student_screen.dart';
@@ -40,13 +42,11 @@ class SearchWidget extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: studentListNotifier,
-      builder: ((BuildContext context, List<StudentModel> studentList,
-          Widget? child) {
+    return Consumer<studentProvider>(
+      builder: (context, providerClass, child) {
         return ListView.builder(
           itemBuilder: (ctx, index) {
-            final data = studentList[index];
+            final data = providerClass.studentListProvider[index];
             if (data.name.toLowerCase().contains(query.toLowerCase().trim())) {
               return Column(
                 children: [
@@ -73,21 +73,19 @@ class SearchWidget extends SearchDelegate {
               return Container();
             }
           },
-          itemCount: studentList.length,
+          itemCount: providerClass.studentListProvider.length,
         );
-      }),
+      },
     );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: studentListNotifier,
-      builder: ((BuildContext context, List<StudentModel> studentList,
-          Widget? child) {
+    return Consumer<studentProvider>(
+      builder: (context, providerClass, child) {
         return ListView.builder(
           itemBuilder: (ctx, index) {
-            final data = studentList[index];
+            final data = providerClass.studentListProvider[index];
             if (data.name.toLowerCase().contains(query.toLowerCase().trim())) {
               return Column(
                 children: [
@@ -119,9 +117,9 @@ class SearchWidget extends SearchDelegate {
               return Container();
             }
           },
-          itemCount: studentList.length,
+          itemCount: providerClass.studentListProvider.length,
         );
-      }),
+      },
     );
   }
 }

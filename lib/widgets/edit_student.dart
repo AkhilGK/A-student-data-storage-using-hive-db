@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:student_model/provider/studentProvider.dart';
 
 import '../db/functions/db_functions.dart';
 import '../db/models/data_modal.dart';
@@ -68,10 +71,27 @@ class _EditStudentState extends State<EditStudent> {
                       height: 20,
                     ),
                     CircleAvatar(
-                      radius: 80,
-                      backgroundImage: FileImage(
-                        File(widget.image),
-                      ),
+                        radius: 80,
+                        backgroundImage: _photo == null
+                            ? FileImage(File(widget.image))
+                            : FileImage(File(_photo!.path))),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black, elevation: 10),
+                          onPressed: () {
+                            getPhoto();
+                          },
+                          icon: const Icon(
+                            Icons.image_outlined,
+                          ),
+                          label: const Text(
+                            'Add An Image',
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 20,
@@ -175,12 +195,13 @@ class _EditStudentState extends State<EditStudent> {
   }
 
   Future<void> onEditSaveButton(ctx) async {
+    var photoPath = _photo == null ? widget.image : _photo!.path;
     final studentmodel = StudentModel(
       name: _nameOfStudent.text,
       age: _ageOfStudent.text,
       phnNumber: _phnOfStudent.text,
       address: _addressOfStudent.text,
-      photo: widget.image,
+      photo: photoPath,
     );
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -196,6 +217,31 @@ class _EditStudentState extends State<EditStudent> {
         ),
       ),
     );
-    editList(widget.index, studentmodel);
+    Provider.of<studentProvider>(context, listen: false)
+        .editList(widget.index, studentmodel);
+  }
+
+  File? _photo;
+
+  Future<void> getPhoto() async {
+    final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (photo == null) {
+      return;
+      // final photodefault = Image.asset(
+      //     'assets/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png');
+
+      // setState(
+      //   () {
+      //     _photo = photodefault;
+      //   },
+      // );
+    } else {
+      final photoTemp = File(photo.path);
+      setState(
+        () {
+          _photo = photoTemp;
+        },
+      );
+    }
   }
 }
