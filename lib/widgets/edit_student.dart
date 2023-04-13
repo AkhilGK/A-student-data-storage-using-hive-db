@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:student_model/provider/studentProvider.dart';
 
-import '../db/functions/db_functions.dart';
 import '../db/models/data_modal.dart';
 
 class EditStudent extends StatefulWidget {
@@ -88,7 +87,7 @@ class _EditStudentState extends State<EditStudent> {
                             Icons.image_outlined,
                           ),
                           label: const Text(
-                            'Add An Image',
+                            'Change Image',
                           ),
                         ),
                       ],

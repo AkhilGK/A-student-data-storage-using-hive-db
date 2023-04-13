@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_model/constants/constants.dart';
-import 'package:student_model/db/functions/db_functions.dart';
 import 'package:student_model/provider/studentProvider.dart';
 import 'package:student_model/widgets/add_students.dart';
 
@@ -22,23 +21,25 @@ class _HomeScreenState extends State<HomeScreen> {
     Provider.of<studentProvider>(context).getallstudents();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Student Log',
-          style: ktextStyle,
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.search),
-            tooltip: 'Open search',
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: SearchWidget(),
-              );
-            },
+          title: const Center(
+            child: Text(
+              'Student Log',
+              style: ktextStyle,
+            ),
           ),
-        ],
-      ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.search),
+              tooltip: 'Open search',
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: SearchWidget(),
+                );
+              },
+            ),
+          ],
+          toolbarHeight: 80),
       body: const ListStudents(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

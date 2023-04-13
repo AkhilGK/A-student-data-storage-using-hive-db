@@ -2,19 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:student_model/db/models/data_modal.dart';
 import 'package:student_model/provider/studentProvider.dart';
 
-import '../db/functions/db_functions.dart';
 import 'display_student_screen.dart';
 import 'students_list.dart';
 
 class SearchWidget extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
-    assert(context != null);
     final ThemeData theme = Theme.of(context);
-    assert(theme != null);
     return theme;
   }
 
@@ -70,7 +66,9 @@ class SearchWidget extends SearchDelegate {
                 ],
               );
             } else {
-              return Container();
+              return Container(
+                child: Text('askjdfhkashdfh'),
+              );
             }
           },
           itemCount: providerClass.studentListProvider.length,
@@ -114,7 +112,9 @@ class SearchWidget extends SearchDelegate {
                 ],
               );
             } else {
-              return Container();
+              return Container(
+                child: Text('askjdfhkashdfh'),
+              );
             }
           },
           itemCount: providerClass.studentListProvider.length,

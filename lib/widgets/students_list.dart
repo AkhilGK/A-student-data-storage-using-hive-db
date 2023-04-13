@@ -18,15 +18,17 @@ class _ListStudentsState extends State<ListStudents> {
   Widget build(BuildContext context) {
     return Consumer<studentProvider>(
       builder: (context, studentList, child) {
-        return ListView.separated(
+        return ListView.builder(
             itemBuilder: ((context, index) {
               //thelist inside provider
               final data = studentList.studentListProvider[index];
               return Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.only(top: 15.0, left: 10, right: 10),
                 child: ListTile(
+                  contentPadding: EdgeInsets.all(8),
+                  tileColor: Color.fromARGB(255, 217, 204, 219),
                   leading: CircleAvatar(
-                    radius: 30,
+                    radius: 35,
                     backgroundImage: FileImage(
                       File(data.photo),
                     ),
@@ -127,9 +129,9 @@ class _ListStudentsState extends State<ListStudents> {
                 ),
               );
             }),
-            separatorBuilder: ((context, index) {
-              return const Divider();
-            }),
+            // separatorBuilder: ((context, index) {
+            //   return const Divider();
+            // }),
             itemCount: studentList.studentListProvider.length);
       },
     );
