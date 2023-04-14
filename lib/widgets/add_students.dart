@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:student_model/constants/constants.dart';
-import 'package:student_model/db/functions/db_functions.dart';
 import 'package:student_model/provider/studentProvider.dart';
 
 import '../db/models/data_modal.dart';
@@ -28,6 +27,7 @@ class _AddStudentClassState extends State<AddStudentClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 82, 63, 85),
         title: const Text(
           'Add Student details',
           style: ktextStyle,
@@ -104,9 +104,6 @@ class _AddStudentClassState extends State<AddStudentClass> {
                     }
                   },
                 ),
-                // const SizedBox(
-                //   height: 20,
-                // ),
                 TextFormField(
                   controller: _addressOfStudent,
                   decoration: const InputDecoration(
@@ -172,27 +169,8 @@ class _AddStudentClassState extends State<AddStudentClass> {
         age.isEmpty ||
         address.isEmpty ||
         number.isEmpty) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     behavior: SnackBarBehavior.floating,
-      //     margin: EdgeInsets.all(20),
-      //     content: Text("You need to add everything"),
-      //   ),
-      // );
       return;
-    }
-    // else if (_photo!.path.isEmpty) {
-    //   _photo = File(
-    //       'assets/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png');
-    //   // _photo.path = Image.asset(
-    //   //     'assets/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png');
-    //   // setState(
-    //   //   () {
-    //   //     _photo = photodefault;
-    //   //   },
-    //   // );
-    // }
-    else {
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -209,7 +187,7 @@ class _AddStudentClassState extends State<AddStudentClass> {
       address: address,
       photo: _photo!.path,
     );
-    Provider.of<studentProvider>(context, listen: false).addStudent(student);
+    Provider.of<StudentProvider>(context, listen: false).addStudent(student);
   }
 
   File? _photo;
@@ -217,14 +195,6 @@ class _AddStudentClassState extends State<AddStudentClass> {
     final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (photo == null) {
       return;
-      // final photodefault = Image.asset(
-      //     'assets/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png');
-
-      // setState(
-      //   () {
-      //     _photo = photodefault;
-      //   },
-      // );
     } else {
       final photoTemp = File(photo.path);
       setState(

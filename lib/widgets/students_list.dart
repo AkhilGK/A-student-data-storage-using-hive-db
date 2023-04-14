@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_model/provider/studentProvider.dart';
-import '../db/functions/db_functions.dart';
 import 'display_student_screen.dart';
 import 'edit_student.dart';
 
@@ -16,7 +15,7 @@ class ListStudents extends StatefulWidget {
 class _ListStudentsState extends State<ListStudents> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<studentProvider>(
+    return Consumer<StudentProvider>(
       builder: (context, studentList, child) {
         return ListView.builder(
             itemBuilder: ((context, index) {
@@ -25,8 +24,8 @@ class _ListStudentsState extends State<ListStudents> {
               return Padding(
                 padding: const EdgeInsets.only(top: 15.0, left: 10, right: 10),
                 child: ListTile(
-                  contentPadding: EdgeInsets.all(8),
-                  tileColor: Color.fromARGB(255, 217, 204, 219),
+                  contentPadding: const EdgeInsets.all(8),
+                  tileColor: const Color.fromARGB(255, 217, 204, 219),
                   leading: CircleAvatar(
                     radius: 35,
                     backgroundImage: FileImage(
@@ -57,7 +56,7 @@ class _ListStudentsState extends State<ListStudents> {
                         }),
                         icon: const Icon(
                           Icons.edit,
-                          color: Colors.blue,
+                          color: Color.fromARGB(255, 82, 63, 85),
                         ),
                         tooltip: 'Edit',
                       ),
@@ -83,7 +82,7 @@ class _ListStudentsState extends State<ListStudents> {
                                     TextButton(
                                       onPressed: (() {
                                         popoutfuction(context);
-                                        Provider.of<studentProvider>(context,
+                                        Provider.of<StudentProvider>(context,
                                                 listen: false)
                                             .deleteStudent(index);
                                       }),

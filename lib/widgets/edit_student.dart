@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:student_model/provider/studentProvider.dart';
-
+import 'package:student_model/constants/constants.dart';
 import '../db/models/data_modal.dart';
 
 class EditStudent extends StatefulWidget {
@@ -66,9 +66,7 @@ class _EditStudentState extends State<EditStudent> {
                       'Edit student details',
                       style: TextStyle(fontSize: 20),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    kHeight20,
                     CircleAvatar(
                         radius: 80,
                         backgroundImage: _photo == null
@@ -92,9 +90,7 @@ class _EditStudentState extends State<EditStudent> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    kHeight20,
                     TextFormField(
                       controller: _nameOfStudent,
                       decoration: const InputDecoration(
@@ -110,9 +106,7 @@ class _EditStudentState extends State<EditStudent> {
                         }
                       },
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    kHeight20,
                     TextFormField(
                       maxLength: 2,
                       controller: _ageOfStudent,
@@ -130,9 +124,7 @@ class _EditStudentState extends State<EditStudent> {
                         }
                       },
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    kHeight20,
                     TextFormField(
                       controller: _addressOfStudent,
                       decoration: const InputDecoration(
@@ -148,9 +140,7 @@ class _EditStudentState extends State<EditStudent> {
                         }
                       },
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    kHeight20,
                     TextFormField(
                       maxLength: 10,
                       controller: _phnOfStudent,
@@ -216,7 +206,7 @@ class _EditStudentState extends State<EditStudent> {
         ),
       ),
     );
-    Provider.of<studentProvider>(context, listen: false)
+    Provider.of<StudentProvider>(context, listen: false)
         .editList(widget.index, studentmodel);
   }
 
@@ -226,14 +216,6 @@ class _EditStudentState extends State<EditStudent> {
     final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (photo == null) {
       return;
-      // final photodefault = Image.asset(
-      //     'assets/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png');
-
-      // setState(
-      //   () {
-      //     _photo = photodefault;
-      //   },
-      // );
     } else {
       final photoTemp = File(photo.path);
       setState(

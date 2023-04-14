@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:student_model/constants/constants.dart';
-
 import 'edit_student.dart';
 
 class DisplayStudent extends StatelessWidget {
@@ -26,6 +25,7 @@ class DisplayStudent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 82, 63, 85),
         title: const Text('Student Details'),
       ),
       body: SafeArea(
@@ -73,7 +73,9 @@ class DisplayStudent extends StatelessWidget {
                             photo: '');
                       })));
                     }),
-                    icon: const Icon(Icons.edit),
+                    icon: const Icon(
+                      Icons.edit,
+                    ),
                     label: const Text('Edit'))
               ],
             ),

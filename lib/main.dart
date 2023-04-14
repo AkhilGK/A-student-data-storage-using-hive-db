@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => studentProvider(),
+          create: (context) => StudentProvider(),
         ),
       ],
       child: MaterialApp(
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.deepPurple,
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

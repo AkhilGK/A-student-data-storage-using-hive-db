@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_model/provider/studentProvider.dart';
-
 import 'display_student_screen.dart';
 import 'students_list.dart';
 
@@ -38,10 +37,13 @@ class SearchWidget extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    final studentListProvider = Provider.of<studentProvider>(context);
+    final studentListProvider = Provider.of<StudentProvider>(context);
     final searchResults = studentListProvider.studentListProvider
-        .where((student) =>
-            student.name.toLowerCase().contains(query.toLowerCase().trim()))
+        .where(
+          (student) =>
+              student.name.toLowerCase().contains(query.toLowerCase().trim()) ||
+              student.address.toLowerCase().contains(query.toLowerCase()),
+        )
         .toList();
 
     return searchResults.isEmpty
@@ -85,7 +87,7 @@ class SearchWidget extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final studentList = Provider.of<studentProvider>(context);
+    final studentList = Provider.of<StudentProvider>(context);
     final searchResults = studentList.studentListProvider;
     return searchResults.isEmpty
         ? const Center(

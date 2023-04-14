@@ -4,7 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:flutter/material.dart';
 import 'package:student_model/db/models/data_modal.dart';
 
-class studentProvider extends ChangeNotifier {
+class StudentProvider extends ChangeNotifier {
   List<StudentModel> studentListProvider = ([]);
 
   Future<void> addStudent(StudentModel value) async {

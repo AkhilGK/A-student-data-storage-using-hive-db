@@ -18,9 +18,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    Provider.of<studentProvider>(context).getallstudents();
+    Provider.of<StudentProvider>(context).getallstudents();
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 82, 63, 85),
           title: const Center(
             child: Text(
               'Student Log',
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           toolbarHeight: 80),
       body: const ListStudents(),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 82, 63, 85),
         onPressed: () {
           Navigator.push(
             context,
